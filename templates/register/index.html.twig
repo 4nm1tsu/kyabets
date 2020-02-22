@@ -3,8 +3,23 @@
 {% block title %}Registeration{% endblock %}
 
 {% block body %}
-<p>User Registration.<p>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+
+<div id="login">
+    <h3 class="text-center text-info">Registration form</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="{{ path('login') }}" method="post">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

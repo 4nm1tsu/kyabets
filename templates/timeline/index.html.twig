@@ -6,39 +6,31 @@
 {% endblock %}
 
 {% block body %}
-<div>
+
+<div class="container">
     <button type="button" class="btn btn-primary fixed-left" data-toggle="collapse" data-target="#collapsepost" aria-expanded="false" aria-controls="collapseExample">
         ✏
     </button>
-    <span>
-        you're now logged in as
-        {% if user.username is defined %}
-        {{user.username}}
-        {% else %}
-        guest
-        {% endif %}
-    </span>
 </div>
-<div class="collapse" id="collapsepost">
+<div class="collapse container" id="collapsepost">
     <form action="/timeline" method="post">
-    <div class="form-group">
-        <label for="exampleTextarea">質問や、他愛も無い呟きなどを投稿しよう <button type="submit" name="post" class="btn btn-secondary">投稿</button>
-</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3" required></textarea>
-    </div>
+        <div class="form-group">
+            <label for="exampleTextarea">write or ask someone as you like.<button type="submit" class="btn btn-secondary">投稿</button>
+            </label>
+            <textarea name="contents" class="form-control" id="exampleTextarea" rows="3" required></textarea>
+        </div>
     </form>
-    </div>
+</div>
 <br>
-{% if debug is defined%}
-{{ debug }}
-{% endif %}
-{% if cards is defined%}
+{% if cards is defined and cards is not null %}
 {% for card in cards %}
-<div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
-    <div class="card-header">{{card.writtenby}}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{card.date | date('Y-m-d H:i:s')}})</span></div>
-    <div class="card-body">
-        <!-- <h4 class="card-title">Primary card title</h4> -->
-        <p class="card-text">{{card.contents}}</p>
+<div class="container">
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
+        <div class="card-header">{{card.writtenby}}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{card.date | date('Y-m-d H:i:s')}})</span></div>
+        <div class="card-body">
+            <!-- <h4 class="card-title">Primary card title</h4> -->
+            <p class="card-text">{{card.contents}}</p>
+        </div>
     </div>
 </div>
 {% endfor %}

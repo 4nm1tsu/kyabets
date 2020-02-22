@@ -14,6 +14,7 @@ class ArchiveController extends AbstractController
     {
         return $this->render('archive/index.html.twig', [
             'controller_name' => 'ArchiveController',
+            'user' => $this->getUser(),
         ]);
     }
 }

@@ -130,6 +130,8 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
+        $this->contribution = 5;
+        $this->nickname = $this->getUsername();
     }
 
     public function getSalt()

@@ -31,7 +31,29 @@
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^settings}'%}active{% endif %}">
                             <a class="nav-link" id="settings" href="/settings">settings</a>
                         </li>
+                        {% if user is defined and user is null %}
+                        <li class="nav-item {% if app.request.attributes.get('_route') matches '{^login}'%}active{% endif %}">
+                            <a class="nav-link" id="login" href="/login">login</a>
+                        </li>
+                        {% endif %}
+                        {% if user is defined and user is null %}
+                        <li class="nav-item {% if app.request.attributes.get('_route') matches '{^register}'%}active{% endif %}">
+                            <a class="nav-link" id="register" href="/register">register</a>
+                        </li>
+                        {% endif %}
+                        {% if user is defined and user is not null %}
+                        <li class="nav-item {% if app.request.attributes.get('_route') matches '{^logout}'%}active{% endif %}">
+                            <a class="nav-link" id="logout" href="/logout">logout</a>
+                        </li>
+                        {% endif %}
                     </ul>
+                    <span class="float-right">
+                        {% if user is defined and user is not null %}
+                        {{ user.username }} : {{ user.contribution }}
+                        {% else %}
+                        Not logged in
+                        {% endif %}
+                    </span>
                     <!--
                         <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -42,6 +64,15 @@
             </div>
         </nav>
         <!-- navigation bar end -->
+        {% if alerts is defined %}
+        {% for alert in alerts %}
+        <!-- alerts -->
+        <div class="alert alert-dismissible alert-{{ alert.type }}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <a href="#" class="alert-link">{{ alert.msg }}</a>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}
         <!-- Optional JavaScript -->
