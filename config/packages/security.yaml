@@ -18,10 +18,10 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                default_target_path: timeline #ログイン後のリダイレクトpath
+                default_target_path: login_message #ログイン後のリダイレクトpath
             logout:
                 path: logout
-                target: login
+                target: logout_message
                 invalidate_session: false
             remember_me:
                 secret:   '%kernel.secret%'

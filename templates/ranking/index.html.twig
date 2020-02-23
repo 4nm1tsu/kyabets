@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RankingController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<table class="table table-hover table-light table-striped">
+  <thead>
+    <tr>
+      <th scope="col" class="col-xs-2">#</th>
+      <th scope="col" class="col-xs-2">Name</th>
+      <th scope="col" class="col-xs-2">Contribution</th>
+    </tr>
+  </thead>
+  <tbody class="table-striped">
+{% for user in users %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{user.username}}</td>
+      <td>{{user.contribution}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<div>
+{% endblock %}

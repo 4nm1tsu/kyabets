@@ -20,10 +20,9 @@ class TimelineController extends AbstractController
      */
     public function index(Request $request)
     {
-        $alerts = [];
         if ($request->getMethod() === 'POST') {
             if ($this->getUser() === null) {
-                array_push($alerts, ['type' => 'warning', 'msg' => 'Oh snap! Please log in. and try submitting again.']);
+                $this->addFlash('warning', 'Oh snap! Please log in. and try submitting again.');
             } else {
                 $postDetail = new Bbs();
                 $postDetail->setContents($request->request->get('contents'));
@@ -48,7 +47,18 @@ class TimelineController extends AbstractController
             'cards' => $cards,
             'user' => $this->getUser(),
             'debug' => $request->request->get('contents'),
-            'alerts' => $alerts,
         ]);
+    }
+
+    /**
+     * @Route("/login_message", name="login_message")
+     *
+     * @return resource of the page to redirect to
+     */
+    public function loginMessage()
+    {
+        $this->addFlash('success', 'you\'ve successfully logged in!');
+
+        return $this->redirectToRoute('timeline');
     }
 }

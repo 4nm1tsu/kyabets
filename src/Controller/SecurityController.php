@@ -24,6 +24,18 @@ class SecurityController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('timeline');
+        return $this->redirectToRoute('login');
+    }
+
+    /**
+     * @Route("/logout_message", name="logout_message")
+     *
+     * @return resource of the page to redirect to
+     */
+    public function logoutMessage()
+    {
+        $this->addFlash('success', 'you\'ve successfully logged out!');
+
+        return $this->redirectToRoute('login');
     }
 }

@@ -131,7 +131,6 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = true;
         $this->contribution = 5;
-        $this->nickname = $this->getUsername();
     }
 
     public function getSalt()
