@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('login');
+        return $this->redirectToRoute('timeline');
     }
 
     /**

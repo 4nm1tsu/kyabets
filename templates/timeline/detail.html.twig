@@ -1,0 +1,50 @@
+{% import 'macro.html.twig' as m %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Kyabets-Timeline-Detail{% endblock %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <button type="button" class="btn btn-primary fixed-left" data-toggle="collapse" data-target="#collapsepost" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-pencil-alt"></i>
+    </button>
+</div>
+<div class="collapse container" id="collapsepost">
+    <form action="/timeline/{{bbs.id}}" method="post">
+        <div class="form-group">
+            <label for="exampleTextarea">Do you wanna reply to this post?<button type="submit" class="btn btn-secondary">返信</button>
+            </label>
+            <textarea name="contents" class="form-control" id="exampleTextarea" rows="3" required></textarea>
+        </div>
+    </form>
+</div>
+<br>
+{% if bbs is defined and bbs is not null %}
+<div class="container">
+    <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
+        <div class="card-header">{{bbs.user.username}}{{ m.badge(bbs.user) }}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{bbs.date | date('Y-m-d H:i:s')}})</span></div>
+        <div class="card-body">
+            <p class="card-text">{{bbs.contents}}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if replies is defined and replies is not null %}
+{% for post in replies %}
+{% if post.user is defined and post.user is not null %}
+<div class="container">
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 50rem;">
+        <div class="card-header">{{post.user.username}}{{ m.badge(post.user) }}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}})</span></div>
+        <div class="card-body">
+            <p class="card-text">{{post.contents}}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}

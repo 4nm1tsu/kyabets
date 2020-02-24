@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,12 @@ class Bbs
      * @ORM\Column(type="string", length=255)
      */
     private $type;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reply", mappedBy="bbs")
+     * @ORM\OrderBy({"date" = "ASC"})
+     */
+    private $replies;
 
     public function getId(): ?int
     {
@@ -92,5 +100,37 @@ class Bbs
     public function __construct()
     {
         $this->type = 'primary';
+        $this->replies = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Reply[]
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(Reply $reply): self
+    {
+        if (!$this->replies->contains($reply)) {
+            $this->replies[] = $reply;
+            $reply->setBbs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(Reply $reply): self
+    {
+        if ($this->replies->contains($reply)) {
+            $this->replies->removeElement($reply);
+            // set the owning side to null (unless already changed)
+            if ($reply->getBbs() === $this) {
+                $reply->setBbs(null);
+            }
+        }
+
+        return $this;
     }
 }
