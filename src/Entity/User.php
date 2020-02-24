@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -50,6 +52,16 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      */
     private $contribution;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Badge", mappedBy="user")
+     */
+    private $badges;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Bbs", mappedBy="user")
+     */
+    private $bbs;
 
 
     public function getId(): ?int
@@ -133,6 +145,8 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = true;
         $this->contribution = 5;
+        $this->badges = new ArrayCollection();
+        $this->bbs = new ArrayCollection();
     }
 
     public function getSalt()
@@ -179,5 +193,67 @@ class User implements UserInterface, \Serializable
             $this->contribution,
         ) = unserialize($serialized, array('allowed_classes'
         => false));
+    }
+
+    /**
+     * @return Collection|Badge[]
+     */
+    public function getBadges(): Collection
+    {
+        return $this->badges;
+    }
+
+    public function addBadge(Badge $badge): self
+    {
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
+            $badge->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBadge(Badge $badge): self
+    {
+        if ($this->badges->contains($badge)) {
+            $this->badges->removeElement($badge);
+            // set the owning side to null (unless already changed)
+            if ($badge->getUser() === $this) {
+                $badge->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bbs[]
+     */
+    public function getBbs(): Collection
+    {
+        return $this->bbs;
+    }
+
+    public function addBb(Bbs $bb): self
+    {
+        if (!$this->bbs->contains($bb)) {
+            $this->bbs[] = $bb;
+            $bb->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBb(Bbs $bb): self
+    {
+        if ($this->bbs->contains($bb)) {
+            $this->bbs->removeElement($bb);
+            // set the owning side to null (unless already changed)
+            if ($bb->getUser() === $this) {
+                $bb->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

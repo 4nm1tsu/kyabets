@@ -1,3 +1,4 @@
+{% import 'macro.html.twig' as m %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello RankingController!{% endblock %}
@@ -16,7 +17,7 @@
 {% for user in users %}
     <tr>
       <th scope="row"></th>
-      <td>{{user.username}}</td>
+      <td>{{user.username}}{{ m.badge(user) }}</td>
       <td>{{user.contribution}}</td>
     </tr>
   {% endfor %}

@@ -1,3 +1,4 @@
+{% import 'macro.html.twig' as m %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +8,8 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css">
         <title>{% block title %}Default title{% endblock %}</title>
+        <!-- font awsome -->
+        <script src="https://kit.fontawesome.com/4f5d1ad427.js" crossorigin="anonymous"></script>
         {% block stylesheets %}{% endblock %}
         <!-- navbarにコンテンツが隠れないように -->
         <style>body { padding-top: 70px; }</style>
@@ -53,7 +56,7 @@
                     </ul>
                     <span class="float-right">
                         {% if user is defined and user is not null %}
-                        {{ user.username }} : {{ user.contribution }}
+                        {{ user.username }}{{ m.badge(user) }} : {{ user.contribution }}
                         {% else %}
                         Not logged in
                         {% endif %}

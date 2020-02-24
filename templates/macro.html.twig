@@ -1,0 +1,18 @@
+{% macro badge(user) %}
+    {% if user.badges is defined and user.badges is not null %}
+        {% for badge in user.badges %}
+            {% if badge == 'admin' %}
+                <!--<span class="badge badge-secondary">{{badge}}</span>-->
+                <i class="fas fa-user-cog" style="color:#ff7070"></i>
+            {% elseif badge == 'first_place' %}
+                <i class="fas fa-medal" style="color:#ffc400"></i>
+            {% elseif badge == 'second_place' %}
+                <i class="fas fa-medal" style="color:#b5b5b5"></i>
+            {% elseif badge == 'third_place' %}
+                <i class="fas fa-medal" style="color:#c27400"></i>
+            {% else %}
+                <span class="badge badge-primary">{{badge}}</span>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}

@@ -1,3 +1,4 @@
+{% import 'macro.html.twig' as m %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Timeline{% endblock %}
@@ -22,17 +23,18 @@
     </form>
 </div>
 <br>
-{% if cards is defined and cards is not null %}
-{% for card in cards %}
+{% if bbs is defined and bbs is not null %}
+{% for post in bbs %}
+{% if post.user is defined and post.user is not null %}
 <div class="container">
     <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
-        <div class="card-header">{{card.writtenby}}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{card.date | date('Y-m-d H:i:s')}})</span></div>
+        <div class="card-header">{{post.user.username}}{{ m.badge(post.user) }}&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}})</span></div>
         <div class="card-body">
-            <!-- <h4 class="card-title">Primary card title</h4> -->
-            <p class="card-text">{{card.contents}}</p>
+            <p class="card-text">{{post.contents}}</p>
         </div>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endif %}
 {% endblock %}

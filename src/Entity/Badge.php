@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\BbsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\BadgeRepository")
  */
-class Bbs
+class Badge
 {
     /**
      * @ORM\Id()
@@ -17,20 +17,10 @@ class Bbs
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bbs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="badges")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
-    /**
-     * @ORM\Column(type="string", length=1023)
-     */
-    private $contents;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -54,30 +44,6 @@ class Bbs
         return $this;
     }
 
-    public function getContents(): ?string
-    {
-        return $this->contents;
-    }
-
-    public function setContents(string $contents): self
-    {
-        $this->contents = $contents;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
@@ -89,8 +55,9 @@ class Bbs
 
         return $this;
     }
-    public function __construct()
+
+    public function __toString()
     {
-        $this->type = 'primary';
+        return $this->getType();
     }
 }
