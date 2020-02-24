@@ -16,7 +16,7 @@ class StudentNumberValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (preg_match('/(^.{8,}$)|(^.{0,6}$)|(^(?!46).{5}$)/', $value, $matches)) {
+        if (preg_match('/(^.{8,}$)|(^.{0,6}$)|(^(?!46))(.{7}$)/', $value, $matches)) {
             $this->context->buildViolation($constraint->message)
                           ->setParameter('{{value}}', $value)
                           ->addViolation();

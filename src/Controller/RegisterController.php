@@ -27,6 +27,7 @@ class RegisterController extends AbstractController
                     ->encodePassword($user, $user->getPassword());
                 $user->setPassword($password);
                 $user->setNickname($user->getUsername());
+                $user->setEmail($user->getUsername().'@ed.tus.ac.jp');
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($user);
                 $manager->flush();
@@ -34,6 +35,7 @@ class RegisterController extends AbstractController
                 return $this->redirectToRoute('login');
             }
         }
+        $this->addFlash('info', 'usernameは学籍番号でおねがいします');
 
         return $this->render('register/index.html.twig', [
             'controller_name' => 'RegisterController',
