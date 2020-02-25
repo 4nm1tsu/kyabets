@@ -31,9 +31,6 @@
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^archive}'%}active{% endif %}">
                             <a class="nav-link" id="archive" href="/archive">archive</a>
                         </li>
-                        <li class="nav-item {% if app.request.attributes.get('_route') matches '{^settings}'%}active{% endif %}">
-                            <a class="nav-link" id="settings" href="/settings">settings</a>
-                        </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^ranking}'%}active{% endif %}">
                             <a class="nav-link" id="ranking" href="/ranking">ranking</a>
                         </li>
@@ -56,7 +53,11 @@
                     </ul>
                     <span class="float-right">
                         {% if user is defined and user is not null %}
+                        <a href="/profile" style="test-decoration: none">
+                        <button type="button" class="btn btn-primary">
                         {{ user.username }}{{ m.badge(user) }} : {{ user.contribution }}
+                        </button>
+                        </a>
                         {% else %}
                         Not logged in
                         {% endif %}
