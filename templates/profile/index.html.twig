@@ -1,3 +1,4 @@
+{% import 'macro.html.twig' as m %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Kyabets-profile{% endblock %}
@@ -19,9 +20,8 @@
                                 </div>
                             </div>
                             <div class="userData ml-3">
-                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">Some Name</a></h2>
-                                <h6 class="d-block"><a href="javascript:void(0)">1,500</a> Video Uploads</h6>
-                                <h6 class="d-block"><a href="javascript:void(0)">300</a> Blog Posts</h6>
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{profileUser.nickname}}</a></h2>
+                                {{ m.badgeDetail(profileUser) }}
                             </div>
                             <div class="ml-auto">
                                 <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
@@ -45,20 +45,20 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Full Name</label>
+                                            <label style="font-weight:bold;">学籍番号</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            Jamshaid Kamran
+                                            {{profileUser.username}}
                                         </div>
                                     </div>
                                     <hr />
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Birth Date</label>
+                                            <label style="font-weight:bold;">nickname</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            March 22, 1994.
+                                            {{profileUser.nickname}}
                                         </div>
                                     </div>
                                     <hr />
@@ -66,32 +66,13 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Something</label>
+                                            <label style="font-weight:bold;">貢献度</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            Something
+                                            {{profileUser.contribution}}
                                         </div>
                                     </div>
                                     <hr />
-                                    <div class="row">
-                                        <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Something</label>
-                                        </div>
-                                        <div class="col-md-8 col-6">
-                                            Something
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Something</label>
-                                        </div>
-                                        <div class="col-md-8 col-6">
-                                            Something
-                                        </div>
-                                    </div>
-                                    <hr />
-
                                 </div>
                                 <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
                                     Facebook, Google, Twitter Account that are connected to this account

@@ -17,13 +17,36 @@
     {% endif %}
 {% endmacro %}
 
+{% macro badgeDetail(user) %}
+    {% if user.badges is defined and user.badges is not null %}
+        {% for badge in user.badges %}
+            {% if badge == 'admin' %}
+                <!--<span class="badge badge-secondary">{{badge}}</span>-->
+                <h6 class="d-block"><i class="fas fa-user-cog" style="color:#ff7070"></i> Administrator of this web site.
+            {% elseif badge == 'first_place' %}
+                <h6 class="d-block"><i class="fas fa-medal" style="color:#ffc400"></i> Top contributor of this site.(1st)
+            {% elseif badge == 'second_place' %}
+                <h6 class="d-block"><i class="fas fa-medal" style="color:#b5b5b5"></i> Top contributor of this site.(2nd)
+            {% elseif badge == 'third_place' %}
+                <h6 class="d-block"><i class="fas fa-medal" style="color:#c27400"></i> Top contributor of this site.(3rd)
+            {% else %}
+                <h6 class="d-block"><span class="badge badge-primary">{{badge}}</span>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro displayUser(user) %}
+<img src="{{asset('images')}}/avatar/4617016.jpg" class="rounded-circle" height="40" width="40"></img><object><a href="/profile/{{user.id}}">{{user.username}}{{ _self.badge(user) }}</a></object>
+{% endmacro %}
+
 {% macro postcard(post) %}
 <div class="container">
     <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
         <a href="/timeline/{{post.id}}" style="text-decoration: none">
-            <div class="card-header"><object><a href="/profile/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a></object>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}})</span></div>
+            <div class="card-header"><object><a href="/profile/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a></object>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}}) {% if post.replies|length > 0 %}<i class="fas fa-comment-dots" style="color:#3452eb">{{post.replies|length}}</i>{% endif %}</span></div>
             <div class="card-body">
-                <p class="card-text">{{post.contents}}</p>
+                <p class="card-text text-muted">{{post.contents}}</p>
             </div>
         </a>
     </div>
