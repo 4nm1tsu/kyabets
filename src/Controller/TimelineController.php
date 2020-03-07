@@ -63,7 +63,7 @@ class TimelineController extends AbstractController
     }
 
     /**
-     * @Route("/timeline/{id}", name="timelinedetail")
+     * @Route("/timeline/{id}", name="timelineDetail")
      *
      * @return resource of the page to redirect to
      */
@@ -109,7 +109,7 @@ class TimelineController extends AbstractController
     }
 
     /**
-     * @Route("/login_message", name="login_message")
+     * @Route("/login_message", name="loginMessage")
      *
      * @return resource of the page to redirect to
      */

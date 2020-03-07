@@ -37,14 +37,14 @@
 {% endmacro %}
 
 {% macro displayUser(user) %}
-<img src="{{asset('images')}}/avatar/4617016.jpg" class="rounded-circle" height="40" width="40"></img><object><a href="/profile/{{user.id}}">{{user.username}}{{ _self.badge(user) }}</a></object>
+<img src="{{asset('images')}}/avatar/4617016.jpg" class="rounded-circle" height="40" width="40"></img><object><a href="{{path('profile')}}/{{user.id}}">{{user.username}}{{ _self.badge(user) }}</a></object>
 {% endmacro %}
 
 {% macro postcard(post) %}
 <div class="container">
     <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
-        <a href="/timeline/{{post.id}}" style="text-decoration: none">
-            <div class="card-header"><object><a href="/profile/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a></object>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}}) {% if post.replies|length > 0 %}<i class="fas fa-comment-dots" style="color:#3452eb">{{post.replies|length}}</i>{% endif %}</span></div>
+        <a href="{{path('timeline')}}/{{post.id}}" style="text-decoration: none">
+            <div class="card-header"><object><a href="{{path('profile')}}/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a></object>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}}) {% if post.replies|length > 0 %}<i class="fas fa-comment-dots" style="color:#3452eb">{{post.replies|length}}</i>{% endif %}</span></div>
             <div class="card-body">
                 <p class="card-text text-muted">{{post.contents}}</p>
             </div>
@@ -56,7 +56,7 @@
 {% macro replies(post) %}
 <div class="container">
     <div class="card bg-light mb-3 mx-auto" style="max-width: 50rem;">
-        <div class="card-header"><a href="/profile/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}})</span></div>
+        <div class="card-header"><a href="{{path('profile')}}/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}})</span></div>
         <div class="card-body">
             <p class="card-text">{{post.contents}}</p>
         </div>

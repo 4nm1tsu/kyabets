@@ -26,34 +26,34 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^timeline}'%}active{% endif %}">
-                            <a class="nav-link" id="timeline" href="/timeline">timeline</a>
+                            <a class="nav-link" id="timeline" href="{{path('timeline')}}">timeline</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^archive}'%}active{% endif %}">
-                            <a class="nav-link" id="archive" href="/archive">archive</a>
+                            <a class="nav-link" id="archive" href="{{path('archive')}}">archive</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^ranking}'%}active{% endif %}">
-                            <a class="nav-link" id="ranking" href="/ranking">ranking</a>
+                            <a class="nav-link" id="ranking" href="{{path('ranking')}}">ranking</a>
                         </li>
 
                         {% if user is defined and user is null %}
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^login}'%}active{% endif %}">
-                            <a class="nav-link" id="login" href="/login">login</a>
+                            <a class="nav-link" id="login" href="{{path('login')}}">login</a>
                         </li>
                         {% endif %}
                         {% if user is defined and user is null %}
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^register}'%}active{% endif %}">
-                            <a class="nav-link" id="register" href="/register">register</a>
+                            <a class="nav-link" id="register" href="{{path('register')}}">register</a>
                         </li>
                         {% endif %}
                         {% if user is defined and user is not null %}
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^logout}'%}active{% endif %}">
-                            <a class="nav-link" id="logout" href="/logout">logout</a>
+                            <a class="nav-link" id="logout" href="{{path('logout')}}">logout</a>
                         </li>
                         {% endif %}
                     </ul>
                     <span class="float-right">
                         {% if user is defined and user is not null %}
-                        <a href="/profile/{{user.id}}" style="test-decoration: none">
+                        <a href="{{path('profile')}}/{{user.id}}" style="test-decoration: none">
                         <button type="button" class="btn btn-primary">
                         {{ user.username }}{{ m.badge(user) }} : {{ user.contribution }}
                         </button>

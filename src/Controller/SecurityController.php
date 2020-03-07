@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout_message", name="logout_message")
+     * @Route("/logout_message", name="logoutMessage")
      *
      * @return resource of the page to redirect to
      */
