@@ -13,9 +13,9 @@ class RootController extends AbstractController
     public function index()
     {
         if (null === $this->getUser()) {
-            return $this->redirect('login');
+            return $this->redirectToRoute('login');
         }
 
-        return $this->redirect('timeline');
+        return $this->redirectToRoute('timeline');
     }
 }

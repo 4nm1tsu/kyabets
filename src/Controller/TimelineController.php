@@ -36,7 +36,7 @@ class TimelineController extends AbstractController
                 $manager->persist($postDetail);
                 $manager->flush();
 
-                return $this->redirect('/timeline');//二重投稿対策
+                return $this->redirectToRoute('timeline');//二重投稿対策
             }
         }
 
@@ -87,7 +87,7 @@ class TimelineController extends AbstractController
                 $manager->persist($replyDetail);
                 $manager->flush();
 
-                return $this->redirect("/timeline/$id");
+                return $this->redirectToRoute("timelineDetail", array('id' => $id));
             }
         }
 
