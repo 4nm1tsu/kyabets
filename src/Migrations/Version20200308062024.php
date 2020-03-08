@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200307094731 extends AbstractMigration
+final class Version20200308062024 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -31,12 +31,15 @@ final class Version20200307094731 extends AbstractMigration
         $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649F85E0677 ON user (username)');
         $this->addSql('CREATE TABLE bbs (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, contents VARCHAR(1023) NOT NULL, date DATETIME NOT NULL, type VARCHAR(255) NOT NULL)');
         $this->addSql('CREATE INDEX IDX_2AD5EFFFA76ED395 ON bbs (user_id)');
-        $this->addSql('CREATE TABLE `rememberme_token` (
+        $this->addSql('
+CREATE TABLE `rememberme_token` (
     `series`   char(88)     UNIQUE PRIMARY KEY NOT NULL,
     `value`    char(88)     NOT NULL,
     `lastUsed` datetime     NOT NULL,
     `class`    varchar(100) NOT NULL,
-    `username` varchar(200) NOT NULL)');
+    `username` varchar(200) NOT NULL
+)
+        ');
     }
 
     public function down(Schema $schema) : void
