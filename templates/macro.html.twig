@@ -71,7 +71,7 @@
     </button>
 </div>
 <div class="collapse container" id="collapsepost">
-    <form action="/timeline{% if id is defined and id is not null %}/{{id}}{% endif %}" method="post">
+    <form action="{{path('timeline')}}{% if id is defined and id is not null %}/{{id}}{% endif %}" method="post">
         <div class="form-group">
             <label for="exampleTextarea">{{sndMsg}}<button type="submit" class="btn btn-secondary">{{sndBtnText}}</button>
             </label>
