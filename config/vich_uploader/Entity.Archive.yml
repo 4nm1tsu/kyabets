@@ -1,0 +1,6 @@
+# config/vich_uploader/Entity.Archive.yml
+App\Entity\Archive:
+    archiveFile:
+        mapping: archive        # required
+        filename_property: archiveName  # required
+        size: archiveSize

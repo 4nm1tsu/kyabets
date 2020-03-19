@@ -34,8 +34,9 @@
     },
     "require-dev": {
         "escapestudios/symfony2-coding-standard": "3.x-dev",
+        "phpstan/phpstan": "^0.12.17",
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.14",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },
