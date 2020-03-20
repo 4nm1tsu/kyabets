@@ -43,7 +43,7 @@
 {% macro postcard(post) %}
 <div class="container">
     <div class="card border-primary mb-3 mx-auto" style="max-width: 50rem;">
-        <a href="{{path('timeline')}}/{{post.id}}" style="text-decoration: none">
+        <a href="{{path('timelineDetailDisplay')}}/{{post.id}}" style="text-decoration: none">
             <div class="card-header"><object><a href="{{path('profile')}}/{{post.user.id}}">{{post.user.username}}{{ _self.badge(post.user) }}</a></object>&nbsp;<span class="body text-right" style="font-size:0.8rem;">({{post.date | date('Y-m-d H:i:s')}}) {% if post.replies|length > 0 %}<i class="fas fa-comment-dots" style="color:#3452eb">{{post.replies|length}}</i>{% endif %}</span></div>
             <div class="card-body">
                 <p class="card-text text-muted">{{post.contents}}</p>
@@ -71,7 +71,7 @@
     </button>
 </div>
 <div class="collapse container" id="collapsepost">
-    <form action="{{path('timeline')}}{% if id is defined and id is not null %}/{{id}}{% endif %}" method="post">
+    <form action="{{path('timelinePost')}}{% if id is defined and id is not null %}/{{id}}{% endif %}" method="post">
         <div class="form-group">
             <label for="exampleTextarea">{{sndMsg}}<button type="submit" class="btn btn-secondary">{{sndBtnText}}</button>
             </label>

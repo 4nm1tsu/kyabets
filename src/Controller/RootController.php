@@ -16,6 +16,6 @@ class RootController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-        return $this->redirectToRoute('timeline');
+        return $this->redirectToRoute('timelineDisplay');
     }
 }

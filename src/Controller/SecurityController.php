@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('timeline');
+        return $this->redirectToRoute('timelineDisplay');
     }
 
     /**

@@ -26,6 +26,6 @@ class MailerController extends AbstractController
 
         $mailer->send($email);
 
-        return $this->redirectToRoute('timeline');
+        return $this->redirectToRoute('timelineDisplay');
     }
 }

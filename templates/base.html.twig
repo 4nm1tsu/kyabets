@@ -26,7 +26,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^timeline}'%}active{% endif %}">
-                            <a class="nav-link" id="timeline" href="{{path('timeline')}}">timeline</a>
+                            <a class="nav-link" id="timeline" href="{{path('timelineDisplay')}}">timeline</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^archive}'%}active{% endif %}">
                             <a class="nav-link" id="archive" href="{{path('archive')}}">archive</a>
