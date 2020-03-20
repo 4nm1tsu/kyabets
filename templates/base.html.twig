@@ -29,7 +29,7 @@
                             <a class="nav-link" id="timeline" href="{{path('timelineDisplay')}}">timeline</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^archive}'%}active{% endif %}">
-                            <a class="nav-link" id="archive" href="{{path('archive')}}">archive</a>
+                            <a class="nav-link" id="archive" href="{{path('archiveDisplay')}}">archive</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') matches '{^ranking}'%}active{% endif %}">
                             <a class="nav-link" id="ranking" href="{{path('ranking')}}">ranking</a>

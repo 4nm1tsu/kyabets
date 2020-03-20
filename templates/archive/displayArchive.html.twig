@@ -1,0 +1,27 @@
+{% import 'macro.html.twig' as m %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Kyabets-Ranking{% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-hover table-light table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="col-xs-2">#</th>
+                <th scope="col" class="col-xs-2">Title</th>
+                <th scope="col" class="col-xs-2">Uploaded by</th>
+            </tr>
+        </thead>
+        <tbody class="table-striped">
+            {% for archive in archives %}
+            <tr>
+                <th scope="row"></th>
+                <td>{{archive.archiveTitle}}</td>
+                <td>1</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<div>
+{% endblock %}

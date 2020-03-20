@@ -11,22 +11,35 @@ use App\Form\ArchiveType;
 class ArchiveController extends AbstractController
 {
     /**
-     * @Route("/archive", name="archive", methods={"GET"})
+     * @Route("/archive", name="archiveDisplay", methods={"GET"})
      */
-    public function index(Request $request)
+    public function archiveDisplay(Request $request)
+    {
+        $archives = $this->getDoctrine()->getManager()->getRepository(Archive::class)->findAll();
+
+        return $this->render('archive/displayArchive.html.twig', [
+            'archives' => $archives,
+            'user' => $this->getUser(),
+        ]);
+    }
+
+    /**
+     * @Route("/archive/upload", name="archiveUploadForm", methods={"GET"})
+     */
+    public function archiveUploadForm(Request $request)
     {
         $archive = new Archive();
         $form = $this->createForm(ArchiveType::class, $archive);
 
         $form->handleRequest($request);
-        return $this->render('archive/index.html.twig', [
+        return $this->render('archive/uploadForm.html.twig', [
             'form' => $form->createView(),
             'user' => $this->getUser(),
         ]);
     }
 
     /**
-     * @Route("/archive", name="archive_upload", methods={"POST"})
+     * @Route("/archive/upload", name="archiveUploadProcess", methods={"POST"})
      */
     public function upload(Request $request)
     {
@@ -39,10 +52,10 @@ class ArchiveController extends AbstractController
             $em->persist($archive);
             $em->flush();
 
-            return $this->redirectToRoute('archive');
+            return $this->redirectToRoute('archiveDisplay');
         }
 
-        return $this->redirectToRoute('archive');
+        return $this->redirectToRoute('archiveDisplay');
     }
 
 }
