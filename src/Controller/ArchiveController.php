@@ -16,6 +16,8 @@ class ArchiveController extends AbstractController
     public function archiveDisplay(Request $request)
     {
         $archives = $this->getDoctrine()->getManager()->getRepository(Archive::class)->findAll();
+        //echo($this->get('kernel')->getRootDir());
+        echo($this->getParameter('kernel.project_dir').Archive::PATH);
 
         return $this->render('archive/displayArchive.html.twig', [
             'archives' => $archives,
