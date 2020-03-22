@@ -11,7 +11,7 @@ class RankingController extends AbstractController
     /**
      * @Route("/ranking", name="ranking")
      */
-    public function index()
+    public function ranking()
     {
         $repository = $this->getDoctrine()
             ->getRepository(User::class);

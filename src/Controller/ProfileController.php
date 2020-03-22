@@ -11,7 +11,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile/{id}", name="profile")
      */
-    public function index($id = null, User $user)
+    public function profile($id = null, User $user)
     {
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'profileController',

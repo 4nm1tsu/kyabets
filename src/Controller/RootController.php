@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class RootController extends AbstractController
 {
     /**
-     * @Route("/", name="/")
+     * @Route("/", name="rootRedirect")
      */
-    public function index()
+    public function rootRedirect()
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('login');

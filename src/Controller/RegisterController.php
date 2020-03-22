@@ -14,7 +14,7 @@ class RegisterController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -35,7 +35,7 @@ class RegisterController extends AbstractController
                 return $this->redirectToRoute('login');
             }
         }
-        $this->addFlash('info', 'usernameは学籍番号でおねがいします');
+        //$this->addFlash('info', 'usernameは学籍番号でおねがいします');
 
         return $this->render('register/index.html.twig', [
             'controller_name' => 'RegisterController',

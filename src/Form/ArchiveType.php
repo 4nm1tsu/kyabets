@@ -16,8 +16,8 @@ class ArchiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('archiveTitle', TextType::class)
-            ->add('archiveFile', FileType::class) // <== 第1引数は Archive エンティティにおいて UploadableField アノテーションが付与されているプロパティ
+            ->add('archiveTitle', TextType::class, ['label' => 'Name'])
+            ->add('archiveFile', FileType::class, ['label' => 'File']) // <== 第1引数は Archive エンティティにおいて UploadableField アノテーションが付与されているプロパティ
             ->add('upload', SubmitType::class)
         ;
     }

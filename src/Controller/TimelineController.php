@@ -70,8 +70,6 @@ class TimelineController extends AbstractController
 
     /**
      * @Route("/timeline/{id}", name="timelineDetailDisplay", methods={"GET"})
-     *
-     * @return resource of the page to redirect to
      */
     public function timelineDetailDisplay($id = null, Request $request)
     {

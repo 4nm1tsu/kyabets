@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArchiveRepository")
@@ -23,9 +24,15 @@ class Archive
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
+     *
+     * @Assert\File(
+     *     maxSize = "8m",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF",
+     * )
+     *
      * @Vich\UploadableField(mapping="archive", fileNameProperty="archiveName", size="archiveSize")
-     * 
+     *
      * @var File|null
      */
     private $archiveFile;
@@ -77,7 +84,6 @@ class Archive
         if (null !== $archiveFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            var_dump($this->archiveFile);
             $this->updatedAt = new \DateTimeImmutable();
             $this->archiveSize = $archiveFile->getSize();
         }

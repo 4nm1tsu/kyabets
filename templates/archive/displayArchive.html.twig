@@ -6,6 +6,11 @@
 {% block body %}
 <h3 class="text-center text-info">Archive</h3>
 <div class="container">
+    <a href="{{path('archiveUploadForm')}}">
+        <button type="button" class="btn btn-secondary fixed-left">
+            <i class="fas fa-file-upload"></i>
+        </button>
+    </a>
     <table class="table table-hover table-light table-striped">
         <thead>
             <tr>
@@ -18,11 +23,11 @@
             {% for archive in archives %}
             <tr>
                 <th scope="row"></th>
-                <td>{{archive.archiveTitle}}</td>
+                <td><a href={{path('archiveShow')}}/{{archive.id}}>{{archive.archiveTitle}}</a></td>
                 <td>1</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-<div>
+</div>
 {% endblock %}
