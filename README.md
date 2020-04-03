@@ -14,3 +14,15 @@
 - [POST]/archive/upload
 - :sushi:[DELETE]/archie/{id}→アーカイブの削除（投稿者のみ可能）
 - [GET]/ranking
+
+## Entity
+- User
+  - One-to-Many:Badge
+  - One-to-Many:Bbs
+- Bbs
+  - Many-to-One:User
+  - One-to-Many:Reply
+-Reply
+  - Many-to-One:Bbs
+-Badge
+  - Many-to-One:User
