@@ -26,7 +26,7 @@ class Archive
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Assert\File(
-     *     maxSize = "8m",
+     *     maxSize = "8M",
      *     mimeTypes = {"application/pdf", "application/x-pdf"},
      *     mimeTypesMessage = "Please upload a valid PDF",
      * )
